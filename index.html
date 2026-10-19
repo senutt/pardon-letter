@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff3f5">
+  <title>Untuk Kamu ♡</title>
+  <style>
+    :root {
+      --pink: #f6a9bd;
+      --pink-deep: #d85d82;
+      --rose: #fff0f4;
+      --cream: #fffaf2;
+      --ink: #563b48;
+      --muted: #896e7b;
+      --white: #fffdfd;
+      --shadow: 0 18px 50px rgba(176, 91, 119, .14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 12%, rgba(255, 199, 215, .55), transparent 25rem),
+        radial-gradient(circle at 92% 82%, rgba(255, 224, 177, .45), transparent 24rem),
+        linear-gradient(135deg, #fff8f8, #fff7ed 55%, #fff0f5);
+      font-family: ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .page {
+      width: min(100% - 32px, 760px);
+      margin: 0 auto;
+      padding: 34px 0 48px;
+      position: relative;
+    }
+
+    .top-note {
+      text-align: center;
+      font-size: .82rem;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--pink-deep);
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 34px 20px 28px;
+      position: relative;
+    }
+
+    .sticker {
+      width: 104px;
+      height: 104px;
+      margin: 0 auto 20px;
+      border-radius: 32px;
+      background: rgba(255, 255, 255, .78);
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      font-size: 3.5rem;
+      transform: rotate(-6deg);
+      animation: bob 3.2s ease-in-out infinite;
+    }
+
+    h1 {
+      font-size: clamp(2.25rem, 8vw, 4.4rem);
+      line-height: 1.05;
+      letter-spacing: -.055em;
+      margin: 0 auto 15px;
+      max-width: 650px;
+    }
+
+    h1 .accent {
+      color: var(--pink-deep);
+    }
+
+    .subtitle {
+      font-size: clamp(1rem, 2.8vw, 1.12rem);
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 490px;
+      margin: 0 auto;
+    }
+
+    .tiny-hearts {
+      color: #e989a6;
+      letter-spacing: .45em;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: rgba(255, 253, 253, .88);
+      border: 1px solid rgba(255, 255, 255, .95);
+      border-radius: 28px;
+      padding: clamp(22px, 5vw, 38px);
+      box-shadow: var(--shadow);
+      margin: 18px 0;
+      backdrop-filter: blur(8px);
+    }
+
+    .card-label {
+      color: var(--pink-deep);
+      font-size: .78rem;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 0 0 12px;
+    }
+
+    h2 {
+      font-size: clamp(1.45rem, 4vw, 2rem);
+      line-height: 1.2;
+      letter-spacing: -.035em;
+      margin: 0 0 16px;
+    }
+
+    p {
+      line-height: 1.85;
+      margin: 0 0 14px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    .letter {
+      display: none;
+      animation: fadeUp .55s ease both;
+    }
+
+    .letter.open {
+      display: block;
+    }
+
+    .letter p {
+      color: #684e5b;
+    }
+
+    .signature {
+      margin-top: 24px;
+      font-weight: 750;
+      color: var(--pink-deep);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      min-height: 48px;
+      border-radius: 999px;
+      border: 0;
+      padding: 13px 21px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:focus-visible {
+      outline: 3px solid #b64a70;
+      outline-offset: 3px;
+    }
+
+    .btn-primary {
+      background: var(--pink-deep);
+      color: white;
+      box-shadow: 0 8px 20px rgba(216, 93, 130, .23);
+    }
+
+    .btn-secondary {
+      color: var(--pink-deep);
+      background: #fff0f4;
+      border: 1px solid #f9d5df;
+    }
+
+    .soft-note {
+      margin-top: 18px;
+      color: #987d89;
+      text-align: center;
+      font-size: .88rem;
+      line-height: 1.7;
+    }
+
+    .promise-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .promise {
+      padding: 17px 13px;
+      border-radius: 20px;
+      background: #fff5f7;
+      text-align: center;
+    }
+
+    .promise .emoji {
+      font-size: 1.65rem;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .promise strong {
+      display: block;
+      font-size: .95rem;
+      margin-bottom: 5px;
+    }
+
+    .promise span {
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.5;
+      display: block;
+    }
+
+    .bottom {
+      text-align: center;
+      color: #a18792;
+      font-size: .82rem;
+      padding: 22px 10px 0;
+      line-height: 1.8;
+    }
+
+    .heart-pop {
+      position: fixed;
+      z-index: 5;
+      pointer-events: none;
+      bottom: -30px;
+      font-size: 20px;
+      animation: floatUp 3.2s ease-in forwards;
+      filter: drop-shadow(0 4px 6px rgba(200, 90, 120, .12));
+    }
+
+    .sprinkle {
+      position: absolute;
+      opacity: .8;
+      user-select: none;
+      pointer-events: none;
+      animation: sway 4s ease-in-out infinite;
+    }
+
+    .s1 {
+      top: 60px;
+      left: 2%;
+      font-size: 1.5rem;
+    }
+
+    .s2 {
+      top: 150px;
+      right: 3%;
+      font-size: 1.8rem;
+      animation-delay: -1s;
+    }
+
+    .s3 {
+      top: 350px;
+      left: 1%;
+      font-size: 1.15rem;
+      animation-delay: -2s;
+    }
+
+    .s4 {
+      top: 400px;
+      right: 2%;
+      font-size: 1.25rem;
+      animation-delay: -.5s;
+    }
+
+    @keyframes bob {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-6deg);
+      }
+
+      50% {
+        transform: translateY(-8px) rotate(3deg);
+      }
+    }
+
+    @keyframes sway {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-8deg);
+      }
+
+      50% {
+        transform: translateY(-9px) rotate(8deg);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg) scale(.75);
+        opacity: 0;
+      }
+
+      12% {
+        opacity: .95;
+      }
+
+      100% {
+        transform: translateY(-110vh) rotate(28deg) scale(1.25);
+        opacity: 0;
+      }
+    }
+
+    .choice-card {
+      overflow: hidden;
+    }
+
+    .choice-copy {
+      color: #684e5b;
+    }
+
+    .choice-area {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 88px;
+      margin-top: 20px;
+      padding: 8px;
+      border-radius: 22px;
+      background: #fff7f8;
+      border: 1px dashed #f2c3d1;
+    }
+
+    .choice-area .btn {
+      position: relative;
+      z-index: 1;
+    }
+
+    #notYetButton {
+      transition: left .22s ease, top .22s ease, transform .18s ease;
+    }
+
+    #notYetButton.running {
+      position: absolute;
+    }
+
+    .choice-result {
+      min-height: 1.8em;
+      text-align: center;
+      margin-top: 18px;
+      color: var(--pink-deep);
+      font-weight: 800;
+    }
+
+    .choice-footnote {
+      text-align: center;
+      color: #987d89;
+      font-size: .83rem;
+      line-height: 1.6;
+      margin-top: 10px !important;
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        width: min(100% - 22px, 760px);
+        padding-top: 22px;
+      }
+
+      .hero {
+        padding: 26px 8px 22px;
+      }
+
+      .promise-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .promise {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        gap: 13px;
+        padding: 14px 16px;
+      }
+
+      .promise .emoji {
+        margin: 0;
+        width: 34px;
+        flex: 0 0 34px;
+      }
+
+      .s1,
+      .s3 {
+        left: -1%;
+      }
+
+      .s2,
+      .s4 {
+        right: -1%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <span class="sprinkle s1" aria-hidden="true">♡</span>
+    <span class="sprinkle s2" aria-hidden="true">✿</span>
+    <span class="sprinkle s3" aria-hidden="true">♥</span>
+    <span class="sprinkle s4" aria-hidden="true">✧</span>
+
+    <div class="top-note">sebuah pesan kecil dari hati ♡</div>
+
+    <header class="hero">
+      <div class="sticker" aria-hidden="true">🥺💗</div>
+      <h1>Hai, <span class="accent">Hai Adisty</span><br>Aku mau bilang sesuatu.</h1>
+      <p class="subtitle">Nok, aku ngerti kemarin tidak berjalan seperti yang kita harapkan. Aku membuat halaman kecil
+        ini karena ada hal yang ingin kusampaikan dengan lebih tenang.</p>
+      <div class="tiny-hearts" aria-hidden="true">♡ ♡ ♡</div>
+    </header>
+
+    <section class="card" aria-labelledby="letter-heading">
+      <p class="card-label">surat terbuka untukmu</p>
+      <h2 id="letter-heading">Boleh aku cerita sebentar?</h2>
+      <p>Aku minta maaf karena malam kita kemarin berakhir dengan rasa kecewa. Aku tahu mungkin kamu sudah berharap kita
+        bisa menikmati waktu bersama, dan aku menyesal karena malam itu justru meninggalkan perasaan yang tidak enak
+        buat kamu. Mungkin ada beberapa dari tingkah lakuku yang ngga bisa dimaafin. Emang sih, kadang aku jg ga
+        mengharapkan ituu.</p>
+      <p>Aku tidak ingin menebak-nebak perasaanmu atau menganggap semuanya akan baik-baik saja hanya karena aku sudah
+        meminta maaf. Perasaanmu penting, dan aku ingin benar-benar mendengarkan apa yang kamu rasakan.</p>
+      <div class="actions">
+        <button class="btn btn-primary" id="openLetter" type="button" aria-expanded="false"
+          aria-controls="extraLetter">Buka pesan kecilku 💌</button>
+        <button class="btn btn-secondary" id="heartsButton" type="button">Kirim sedikit hati ♡</button>
+      </div>
+      <div class="letter" id="extraLetter">
+        <p style="margin-top:24px">Aku tidak akan meminta kamu untuk langsung memaafkan aku, apalagi berpura-pura sudah
+          tidak marah. Kamu boleh merasa kecewa. Kamu juga boleh butuh waktu.</p>
+        <p>Yang bisa kulakukan sekarang adalah mengakui bahwa ada hal yang perlu kuperbaiki, mendengarkanmu tanpa
+          buru-buru membela diri, dan berusaha menunjukkan perubahan lewat tindakan—bukan cuma lewat tulisan di halaman
+          ini.</p>
+        <p>Aku menghargai kamu. Aku ingin hubungan kita jadi tempat yang nyaman untuk kita berdua, termasuk saat ada hal
+          yang perlu dibicarakan dengan jujur.</p>
+        <p>Kalau nanti kamu sudah siap, aku ingin mendengar ceritamu. Tidak harus sekarang, dan tidak harus dengan cara
+          tertentu. Aku akan menghormati waktumu.</p>
+        <p class="signature">Maaf ya. Pelan-pelan, aku ingin memperbaiki ini. ♡</p>
+      </div>
+    </section>
+
+
+    <section class="card choice-card" aria-labelledby="choice-heading">
+      <p class="card-label">boleh pilih, Sayang ♡</p>
+      <h2 id="choice-heading">Aku boleh minta kesempatan untuk memperbaiki ini?</h2>
+      <p class="choice-copy">Kamu nggak harus langsung memaafkan aku. Tapi kalau kamu mau, aku ingin mendengarkan dan
+        memperbaiki keadaan pelan-pelan.</p>
+      <div class="choice-area" id="choiceArea">
+        <button class="btn btn-primary" id="forgiveButton" type="button">Aku maafin kamu 💗</button>
+        <button class="btn btn-secondary" id="notYetButton" type="button">Belum dulu 😤</button>
+      </div>
+      <p class="choice-result" id="choiceResult" role="status" aria-live="polite"></p>
+      <p class="choice-footnote">Psst… tombol “Belum dulu” suka panik dan lari, tapi kalau kamu berhasil menekannya,
+        jawabanmu tetap dihargai. 🤍</p>
+    </section>
+
+    <p class="soft-note">Halaman kecil ini bukan cara untuk membuatmu merasa harus memaafkan aku.<br>Aku hanya ingin
+      kamu tahu bahwa aku menyesal dan bersedia mendengarkan. 🤍</p>
+    <footer class="bottom">U'll always be my Healer 🤍<br><span id="footerHeart">♡</span></footer>
+  </main>
+
+  <script>
+    const openButton = document.getElementById('openLetter');
+    const extraLetter = document.getElementById('extraLetter');
+    const heartsButton = document.getElementById('heartsButton');
+
+    openButton.addEventListener('click', () => {
+      const isOpen = extraLetter.classList.toggle('open');
+      openButton.setAttribute('aria-expanded', String(isOpen));
+      openButton.textContent = isOpen ? 'Tutup pesan kecilku 💌' : 'Buka pesan kecilku 💌';
+      if (isOpen) {
+        extraLetter.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+        sprinkleHearts(7);
+      }
+    });
+
+    heartsButton.addEventListener('click', () => {
+      sprinkleHearts(18);
+      heartsButton.textContent = 'Hati kecil sudah dikirim ♡';
+      window.setTimeout(() => {heartsButton.textContent = 'Kirim sedikit hati ♡';}, 2200);
+    });
+
+    function sprinkleHearts(count) {
+      const symbols = ['♡', '♥', '💗', '💕', '✧'];
+      for (let i = 0; i < count; i++) {
+        window.setTimeout(() => {
+          const heart = document.createElement('span');
+          heart.className = 'heart-pop';
+          heart.setAttribute('aria-hidden', 'true');
+          heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+          heart.style.left = (5 + Math.random() * 90) + 'vw';
+          heart.style.animationDuration = (2.4 + Math.random() * 1.8) + 's';
+          heart.style.fontSize = (16 + Math.random() * 18) + 'px';
+          document.body.appendChild(heart);
+          window.setTimeout(() => heart.remove(), 4500);
+        }, i * 75);
+      }
+    }
+
+    const choiceArea = document.getElementById('choiceArea');
+    const forgiveButton = document.getElementById('forgiveButton');
+    const notYetButton = document.getElementById('notYetButton');
+    const choiceResult = document.getElementById('choiceResult');
+    let escapeCount = 0;
+
+    function moveNotYetButton() {
+      if (!choiceArea || !notYetButton) return;
+      const areaRect = choiceArea.getBoundingClientRect();
+      const buttonRect = notYetButton.getBoundingClientRect();
+      notYetButton.classList.add('running');
+      const maxX = Math.max(0, areaRect.width - buttonRect.width - 12);
+      const maxY = Math.max(0, areaRect.height - buttonRect.height - 12);
+      const x = 6 + Math.random() * Math.max(0, maxX - 6);
+      const y = 6 + Math.random() * Math.max(0, maxY - 6);
+      notYetButton.style.left = x + 'px';
+      notYetButton.style.top = y + 'px';
+      escapeCount++;
+      if (escapeCount === 1) {
+        choiceResult.textContent = 'Eh, tombolnya malu-malu! Coba lagi kalau mau 😳';
+      } else if (escapeCount < 4) {
+        choiceResult.textContent = ['Aduh, kabur lagi! 🏃‍♀️💨', 'Tombolnya ikut deg-degan, Sayang 😭', 'Ups, hampir ketangkap! 🙈'][escapeCount - 2] || 'Ups, hampir ketangkap! 🙈';
+      } else {
+        choiceResult.textContent = 'Hehe, tombolnya lincah ya. Tapi kamu tetap boleh memilih, kok 🤍';
+      }
+    }
+
+    notYetButton.addEventListener('pointerenter', (event) => {
+      // Playful only for a pointer/hover device; touch users can tap it normally.
+      if (event.pointerType === 'mouse' && escapeCount < 5) moveNotYetButton();
+    });
+    notYetButton.addEventListener('click', () => {
+      choiceResult.textContent = 'Nggak apa-apa, Sayang. Kamu boleh butuh waktu. Aku tetap siap mendengarkan saat kamu mau. 🤍';
+      notYetButton.classList.remove('running');
+      notYetButton.style.position = '';
+      notYetButton.style.left = '';
+      notYetButton.style.top = '';
+      sprinkleHearts(4);
+    });
+    forgiveButton.addEventListener('click', () => {
+      choiceResult.textContent = 'Makasih sudah memberiku kesempatan, Sayang. Aku akan berusaha membuktikannya lewat tindakan, bukan cuma kata-kata. 💗';
+      sprinkleHearts(24);
+    });
+
+  </script>
+</body>
+
+</html>
